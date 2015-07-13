@@ -11,6 +11,9 @@
     "require": {
         "piwik": ">=2.14.0"
     },
+	"donate": {
+    	"paypal": "support@invisionit.com.au"
+    },
     "authors": [
         {
             "name": "Invision Technology Solutions",
