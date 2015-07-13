@@ -333,7 +333,7 @@ class API extends \Piwik\Plugin\API
                     $contents = array();
                     if(!empty($this->config[$domain[1]][$server[1]][$name][$parts3[2].'.label'])) {
                         $metric = ($serverFilter == false) ? $server[1].' - '.$this->config[$domain[1]][$server[1]][$name][$parts3[2].'.label'] : $this->config[$domain[1]][$server[1]][$name][$parts3[2].'.label'];
-    $metric = str_replace('invisionit.com.au', 'test.com', $metric);
+
                         // Each server is stored in different file so append results to array if necessary
                         if (!empty($data[Date::factory($timestamp, $timezone)->getDatetime()]) && is_array($data[Date::factory($timestamp, $timezone)->getDatetime()])) {
                             $contents = $data[Date::factory($timestamp, $timezone)->getDatetime()];
