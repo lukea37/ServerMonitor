@@ -1,0 +1,8 @@
+{% for category in categoryGraphs %}
+    <div class="categoryEntry" style="clear:both">
+        <h2>{{ category.title }}</h2>
+
+		{{ category.graph|raw }}
+
+    </div>
+{% endfor %}

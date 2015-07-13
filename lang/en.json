@@ -1,0 +1,8 @@
+{
+    "InvisionitServer": {
+        "SoftwareHistory": "SoftwareHistory",
+        "DNSServer": "DNS Server",
+        "MailServer": "Mail Server",
+        "Nginx": "Nginx"
+    }
+}
