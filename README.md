@@ -28,6 +28,11 @@ The Piwik Menu is automatically populated based on the Munin configuration.
 You can filter results based on server.
 ![Server Filter](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/serverfilter.png)
 
+All Munin metrics are available as dashboard widgets, allowing you to create custom dashboards for Server Monitoring.
+![Widgets](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/widgets.png)
+
+![Dashboards](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/dashboards.png)
+
 __Piwik Graphs__
 ![Bind monitoring](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/bind.png)
 ![Ngnix monitoring](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/nginx.png)
