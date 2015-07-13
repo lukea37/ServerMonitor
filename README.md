@@ -21,25 +21,32 @@ This enhances the Munin functionality by providing all the great benefits of Piw
 The following screenshots show how Munin is integrated with Piwik Analytics platform.
 
 __Piwik Menu__
+
 The Piwik Menu is automatically populated based on the Munin configuration.
 
 ![Piwik Menu](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/menu.png)
 
-You can filter results based on server.
+You can filter results based on Munin node server.
+
 ![Server Filter](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/serverfilter.png)
 
-All Munin metrics are available as dashboard widgets, allowing you to create custom dashboards for Server Monitoring.
-![Widgets](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/widgets.png)
-
-![Dashboards](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/dashboards.png)
+![Dashboards](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/dashboard.png)
 
 __Piwik Graphs__
+
+Below are some example graphs that are created based on Munin data.
+
 ![Bind monitoring](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/bind.png)
 ![Ngnix monitoring](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/nginx.png)
 ![CPU monitoring](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/cpu.png)
 ![Memory monitoring](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/memory.png)
 
 __Piwik Dashboard Widgets__
+
+All Munin metrics are available as dashboard widgets, allowing you to create custom dashboards for Server Monitoring.
+
+![Widgets](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/widgets.png)
+
 ![Custom Dashboard](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/dashboard.png)
 
 ## Requirements
