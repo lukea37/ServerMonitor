@@ -30,8 +30,6 @@ You can filter results based on Munin node server.
 
 ![Server Filter](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/serverfilter.png)
 
-![Dashboards](https://raw.githubusercontent.com/Invision-Technology-Soultions/ServerMonitor/master/screenshots/dashboard.png)
-
 __Piwik Graphs__
 
 Below are some example graphs that are created based on Munin data.
