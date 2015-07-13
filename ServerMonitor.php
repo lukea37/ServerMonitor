@@ -13,20 +13,13 @@ class ServerMonitor extends \Piwik\Plugin
     public function getListHooksRegistered()
     {
         return array(
-            'AssetManager.getJavaScriptFiles' => 'getJavaScriptFiles',
-            'AssetManager.getStylesheetFiles' => 'getStylesheetFiles',
+            'AssetManager.getJavaScriptFiles' => 'getJavaScriptFiles'
         );
     }
     
     public function getJavaScriptFiles(&$files)
     {
-        $files[] = "plugins/ServerMonitor/js/itsserver.js";
+        $files[] = "plugins/ServerMonitor/js/ServerMonitor.js";
     }
-    
-    public function getStylesheetFiles(&$files)
-    {
-        $files[] = "plugins/ServerMonitor/css/its.css";
-    }
-
 
 }

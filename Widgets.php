@@ -21,13 +21,15 @@ class Widgets extends \Piwik\Plugin\Widgets
      */
     protected function init()
     {
-        $plugins = API::getInstance()->getPlugins();
+        $config = API::getInstance()->getConfig();
    
         // Add widgets
-        foreach ($plugins as $server => $names) { 
-            foreach ($names as $name => $attributes) {
-                $this->addWidget($attributes['graph_title'], $method = 'getGraph', $params = array('name' => $name));        
-            }    
+        foreach ($config as $domain => $servers) { 
+            foreach ($servers as $server => $names) { 
+                foreach ($names as $name => $attributes) {
+                    $this->addWidget($attributes['graph_title'], $method = 'getGraph', $params = array('name' => $name));        
+                }    
+            }
         }
 
     }

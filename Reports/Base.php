@@ -23,19 +23,21 @@ abstract class Base extends \Piwik\Plugin\Report
     protected function addReportMetadataForEachModule(&$availableReports, $infos)
     {
         $idSite = $this->getIdSiteFromInfos($infos);
-        $plugins  = $this->getModulesForIdSite($idSite);
+        $config  = $this->getModulesForIdSite($idSite);
         
         // Create reports
         $order = 50;
 		
 		$reports = array();
-        foreach ($plugins as $server => $names) {
-                foreach ($names as $name => $attributes) {
-                        foreach ($attributes as $attribute => $value) {
-                            if (API::getInstance()->endsWith($attribute, '.label'))
-                                $reports[] = array("name"=>$name, "title"=> $value);
-                        }   
-                }
+        foreach ($config as $domain => $servers) {
+            foreach ($servers as $server => $names) {
+                    foreach ($names as $name => $attributes) {
+                            foreach ($attributes as $attribute => $value) {
+                                if (API::getInstance()->endsWith($attribute, '.label'))
+                                    $reports[] = array("name"=>$name, "title"=> $value);
+                            }   
+                    }
+            }
         }
 		
         foreach ($reports as $report) {
@@ -72,6 +74,6 @@ abstract class Base extends \Piwik\Plugin\Report
             return array();
         }
         
-        return API::getInstance()->getPlugins();
+        return API::getInstance()->getConfig();
     }
 }
