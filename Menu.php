@@ -8,7 +8,7 @@
 
 namespace Piwik\Plugins\ServerMonitor;
 
-
+use Piwik\Piwik;
 use Piwik\Menu\MenuAdmin;
 use Piwik\Menu\MenuReporting;
 use Piwik\Menu\MenuTop;
@@ -20,6 +20,8 @@ class Menu extends \Piwik\Plugin\Menu
 {
     public function configureReportingMenu(MenuReporting $menu)
     {
+        if (!Piwik::isUserHasSomeAdminAccess()) return;
+        
          // Create custom Menu "Server"
          $menu->addItem('ServerMonitor_Server', '', $this->urlForAction('index'), $orderId = 30);
 		 

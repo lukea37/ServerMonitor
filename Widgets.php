@@ -7,7 +7,7 @@
  */
 
 namespace Piwik\Plugins\ServerMonitor;
-
+use Piwik\Piwik;
 use Piwik\View;
 use Piwik\WidgetsList;
 
@@ -21,6 +21,8 @@ class Widgets extends \Piwik\Plugin\Widgets
      */
     protected function init()
     {
+        if (!Piwik::isUserHasSomeAdminAccess()) return;
+        
         $config = API::getInstance()->getConfig();
    
         // Add widgets
