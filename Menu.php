@@ -20,7 +20,7 @@ class Menu extends \Piwik\Plugin\Menu
 {
     public function configureReportingMenu(MenuReporting $menu)
     {
-        if (!Piwik::isUserHasSomeAdminAccess()) return;
+        if (!Piwik::hasUserSuperUserAccess()) return;
         
          // Create custom Menu "Server"
          $menu->addItem('ServerMonitor_Server', '', $this->urlForAction('index'), $orderId = 30);

@@ -21,7 +21,7 @@ class Widgets extends \Piwik\Plugin\Widgets
      */
     protected function init()
     {
-        if (!Piwik::isUserHasSomeAdminAccess()) return;
+        if (!Piwik::hasUserSuperUserAccess()) return;
         
         $config = API::getInstance()->getConfig();
    
