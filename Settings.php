@@ -36,7 +36,7 @@ class Settings extends \Piwik\Plugin\Settings
         $this->serverSettings->inlineHelp      = Piwik::translate('ServerMonitor_ServerSettingHelp');
         $this->serverSettings->defaultValue    = '/var/lib/munin/';
         $this->serverSettings->validate = function ($value, $setting) {
-            if (!file_exists($value)) {
+            if (!file_exists($value.'datafile')) {
                 throw new \Exception( Piwik::translate('ServerMonitor_FolderNotFound') );
             } 
             if (substr($value, -1) !== DIRECTORY_SEPARATOR) {

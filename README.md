@@ -50,7 +50,7 @@ All Munin metrics are available as dashboard widgets, allowing you to create cus
 ## Requirements
 
 * Requires [Piwik](http://piwik.org/) (Tested >=2.13) and [Munin server monitoring](http://guide.munin-monitoring.org/en/latest/master/) (Tested 1.4.6) installed on same server.
-* [PHP RRD Functions](http://php.net/manual/en/book.rrd.php)
+* [PHP RRD Functions](http://php.net/manual/en/book.rrd.php) (Tested 1.1.3)
 * Piwik requires read-only access to Munin datafile and RRD files located in: /var/lib/munin/ 
 
 ## Installation
@@ -59,8 +59,7 @@ All Munin metrics are available as dashboard widgets, allowing you to create cus
 * Install via Piwik Marketplace
 
 ## Roadmap
-
-* Support Piwik Periods: Week, Month, Year
+ 
 * Integration with Piwik Scheduled reports
 * Integration with Piwik Custom Alerts
 * Integration with Piwik Mobile App
@@ -70,6 +69,7 @@ All Munin metrics are available as dashboard widgets, allowing you to create cus
 ## Changelog
 
 * 0.1.0 - First beta
+* 0.1.5 - Tested Munin v2.25, Support Piwik Periods: Week, Month, Year
 
 ## License
 

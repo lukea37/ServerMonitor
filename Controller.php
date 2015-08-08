@@ -90,6 +90,12 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
             $selectableColumns, 'My documentation', 'ServerMonitor.getGraphEvolution');
 
         $view->requestConfig->disable_generic_filters=true;
+    
+        foreach ($view->config->columns_to_display as $key => $col) {
+            if (!in_array($col, $selectableColumns)) {
+                unset($view->config->columns_to_display[$key]);
+            }
+        }
         
         if (empty($view->config->columns_to_display) && !empty($defaultColumns)) {
             $view->config->columns_to_display = $defaultColumns;

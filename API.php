@@ -279,11 +279,28 @@ class API extends \Piwik\Plugin\API
     }
     
     public function getGraphEvolution($date, $period)
-    {
-        //TODO
-        //$period = new Range($period, 'last30');
-        //$period->setDefaultEndDate($date);
-        
+    {        
+        /* 
+         * Set the RRD resolution based off the period selected in Piwik, available values are:
+         * 300      - 5 mins
+         * 1800    - 30 mins
+         * 7200    - 2 hrs
+         * 86400   - 1 day
+         */
+        switch ($period) {
+            case 'week':
+                $resolution = 1800;
+                break;
+            case 'month':
+                $resolution = 7200;
+                break;
+            case 'year':
+                $resolution = 86400;
+                break;
+            default:
+                $resolution = 300;
+        }
+
         $name = Common::getRequestVar('name', false);
         $serverFilter = Common::getRequestVar('server', false);
         $idSite = Common::getRequestVar('idSite', false);
@@ -295,14 +312,19 @@ class API extends \Piwik\Plugin\API
         
         $dates = explode(',',$date);
 
-        if(Date::factory($dates[1])->isToday()) {
-            $start = "-1d";
-            $finish = "now";
+        if(Date::factory($dates[1])->isToday() || Date::factory($dates[1])->isLater(Date::today())) {
+            $start = "-1".$period;
+            $end = "now";
         } else {
-            $start = Date::factory($dates[1])->getTimestampUTC()-Date::factory($dates[1], 'UTC')->adjustForTimezone($dates[1],$timezone);
-            $finish = "start+1d";
+            if ($period == 'day') {
+                $start = Date::factory($dates[1])->getTimestampUTC()-Date::factory($dates[1], 'UTC')->adjustForTimezone($dates[1],$timezone);
+                $end = "start+1".$period;                
+            } else {
+                $start = "end-1".$period;
+                $end = Date::factory($dates[1])->getTimestampUTC()-Date::factory($dates[1], 'UTC')->adjustForTimezone($dates[1],$timezone);
+            }
         }
-        
+
         $data = array();
 
         /* 
@@ -324,29 +346,34 @@ class API extends \Piwik\Plugin\API
 
             if ($parts0 && $parts1) {
                 
-                $rrd_data = rrd_fetch($this->settings['dbdir'].$filename, array( "AVERAGE", "--resolution", "5", "--start", $start, "--end", $finish )); //TODO - change based on day/week/month period
-                $rrd_values = array_values(($rrd_data["data"]));
+                $rrd_data = rrd_fetch($this->settings['dbdir'].$filename, array( "AVERAGE", "--resolution", $resolution, "--start", $start, "--end", $end )); 
+                
+                if (!empty($rrd_data["data"]) && is_array($rrd_data["data"])) {
+                    $rrd_values = array_values(($rrd_data["data"]));
+        
+                    // Loop through array data
+                    
+                    foreach ( array_shift($rrd_values) as $timestamp => $value )
+                    { 
+                        $contents = array();
+                        if(!empty($this->config[$domain[1]][$server[1]][$name][$parts3[2].'.label'])) {
+                            $metric = ($serverFilter == false) ? $server[1].' - '.$this->config[$domain[1]][$server[1]][$name][$parts3[2].'.label'] : $this->config[$domain[1]][$server[1]][$name][$parts3[2].'.label'];
     
-                // Loop through array data
-                foreach ( array_shift($rrd_values) as $timestamp => $value )
-                { 
-                    $contents = array();
-                    if(!empty($this->config[$domain[1]][$server[1]][$name][$parts3[2].'.label'])) {
-                        $metric = ($serverFilter == false) ? $server[1].' - '.$this->config[$domain[1]][$server[1]][$name][$parts3[2].'.label'] : $this->config[$domain[1]][$server[1]][$name][$parts3[2].'.label'];
-
-                        // Each server is stored in different file so append results to array if necessary
-                        if (!empty($data[Date::factory($timestamp, $timezone)->getDatetime()]) && is_array($data[Date::factory($timestamp, $timezone)->getDatetime()])) {
-                            $contents = $data[Date::factory($timestamp, $timezone)->getDatetime()];
-                            $contents[$metric] = round($value,2);
-                        } else {
-                            $contents[$metric] = round($value,2);  
+                            // Each server is stored in different file so append results to array if necessary
+                            if (!empty($data[Date::factory($timestamp, $timezone)->getDatetime()]) && is_array($data[Date::factory($timestamp, $timezone)->getDatetime()])) {
+                                $contents = $data[Date::factory($timestamp, $timezone)->getDatetime()];
+                                $contents[$metric] = round($value,2);
+                            } else {
+                                $contents[$metric] = round($value,2);  
+                            }
+                            
+                            $data[Date::factory($timestamp, $timezone)->getDatetime()] = $contents;
+                             
                         }
-                        
-                        $data[Date::factory($timestamp, $timezone)->getDatetime()] = $contents;
-                         
+        
                     }
-    
                 }
+
             }
 
         }

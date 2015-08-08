@@ -6,7 +6,7 @@
         "ServerSettingLabel" : "Munin dbdir",
         "ServerSettingDescription" : "The path to your Munin dbdir folder. Ensure the path has a trailing /",
         "ServerSettingHelp" : "This is usually /var/lib/munin/ however you can check your munin.conf configuration file for 'dbdir' value to determine the path.",
-        "FolderNotFound" : "The Munin dbdir folder does not exist.",
+        "FolderNotFound" : "The Munin dbdir folder does not exist or your webserver can not read it.",
         "FolderPathError" : "The munin dbdir folder should have a trailing /",
         "PhpRrdError" : "PHP function rrd_fetch does not exist. Please ensure you have installed PHP RRD functions: http://php.net/manual/en/book.rrd.php",
         "DataFileNotFound" : "Munin datafile not found. Check plugin settings to ensure the dbdir is correct."

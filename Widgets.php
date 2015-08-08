@@ -29,7 +29,7 @@ class Widgets extends \Piwik\Plugin\Widgets
         foreach ($config as $domain => $servers) { 
             foreach ($servers as $server => $names) { 
                 foreach ($names as $name => $attributes) {
-                    $this->addWidget($attributes['graph_title'], $method = 'getGraph', $params = array('name' => $name));        
+                    if (!empty($attributes['graph_title']) && !empty($name)) $this->addWidget($attributes['graph_title'], $method = 'getGraph', $params = array('name' => $name));        
                 }    
             }
         }
